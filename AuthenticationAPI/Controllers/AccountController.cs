@@ -13,7 +13,7 @@ namespace AuthenticationAPI.Controllers
     {
         private static ConcurrentDictionary<string, string> UserData = new ConcurrentDictionary<string, string>();
 
-        //api/account/{email}/{password}
+        //api/account/login/{email}/{password}
         [HttpPost("login")]
         public async Task<IActionResult> Login(string email, string password)
         {
