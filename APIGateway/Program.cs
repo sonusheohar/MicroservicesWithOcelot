@@ -11,8 +11,19 @@ builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange
 builder.Services.AddOcelot();
 #endregion
 
+#region configure Cors Origin usin AddCores() method
+builder.Services.AddCors(option=>{
+    option.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
+#endregion
+
 var app = builder.Build();
 
+// add UseCors middleware here
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
