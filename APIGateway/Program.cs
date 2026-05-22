@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using APIGateway.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,7 +26,7 @@ var app = builder.Build();
 // add UseCors middleware here
 app.UseCors();
 app.UseHttpsRedirection();
-
+app.UseMiddleware<InterceptionMiddleware>();
 app.UseAuthorization();
 
 // use UseOcelot
