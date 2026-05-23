@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ocelot" Version="24.1.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="20.0.0" />
   </ItemGroup>
 
 </Project>

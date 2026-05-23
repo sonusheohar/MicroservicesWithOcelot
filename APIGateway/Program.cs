@@ -26,7 +26,9 @@ var app = builder.Build();
 // add UseCors middleware here
 app.UseCors();
 app.UseHttpsRedirection();
+app.UseMiddleware<TokenCheckerMiddleware>();
 app.UseMiddleware<InterceptionMiddleware>();
+
 app.UseAuthorization();
 
 // use UseOcelot

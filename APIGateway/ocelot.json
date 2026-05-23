@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/users",
+      "DownstreamPathTemplate": "/api/user",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 8001
         }
       ],
-      "UpstreamPathTemplate": "/api/users",
+      "UpstreamPathTemplate": "/api/user",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
@@ -26,7 +26,7 @@
     },
 
     {
-      "DownstreamPathTemplate": "api/account/login/{email}/{password}",
+      "DownstreamPathTemplate": "/api/account/login/{email}/{password}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -34,12 +34,12 @@
           "Port": 8003
         }
       ],
-      "UpstreamPathTemplate": "api/account/login/{email}/{password}",
+      "UpstreamPathTemplate": "/api/account/login/{email}/{password}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
 
     {
-      "DownstreamPathTemplate": "api/account/register/{email}/{password}",
+      "DownstreamPathTemplate": "/api/account/register/{email}/{password}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -47,7 +47,7 @@
           "Port": 8003
         }
       ],
-      "UpstreamPathTemplate": "api/account/register/{email}/{password}",
+      "UpstreamPathTemplate": "/api/account/register/{email}/{password}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ],
