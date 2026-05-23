@@ -246,11 +246,11 @@
 This project demonstrates a **microservices architecture** using **Ocelot API Gateway** in .NET.  
 It integrates multiple services — **UserService**, **ProductService**, and **Authentication/IdentityService** — behind a single gateway, providing centralized **routing, authentication, authorization, rate limiting, caching, and request aggregation**.
 
-![Ocelot API Gateway Routing](ocelot-flow-diagram)
+![Ocelot API Gateway Routing](ocelot-flow-diagram.png)
 ---
 
 ## 📂 Project Structure
-![Ocelot API Gateway Routing](ocelotProArch)
+![Ocelot API Gateway Routing](ocelotProArch.png)
 
 ## 🏗️ Architecture
 - **[API Gateway](ca://s?q=Explain_API_Gateway_Architecture)**: Single entry point for all client requests.  
