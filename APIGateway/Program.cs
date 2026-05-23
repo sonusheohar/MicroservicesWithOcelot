@@ -1,6 +1,8 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using APIGateway.Middlewares;
+using Ocelot.Cache.CacheManager;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Configure Ocelot dependency 
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-builder.Services.AddOcelot();
+builder.Services.AddOcelot().AddCacheManager(x =>
+{
+    x.WithDictionaryHandle();
+});
 #endregion
 
 #region configure Cors Origin usin AddCores() method
