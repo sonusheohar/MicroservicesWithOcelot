@@ -7,16 +7,18 @@
         {
           "Host": "localhost",
           "Port": 8001
+        },
+        {
+          "Host": "localhost",
+          "Port": 8004
+        },
+        {
+          "Host": "localhost",
+          "Port": 8005
         }
       ],
       "UpstreamPathTemplate": "/api/user",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      //"FileCacheOptions": {
-      //  "TtlSeconds": 60,
-      //  "Region": "default",CacheManager
-      //  "Header": "OC-Caching-Control",
-      //  "EnableContentHashing": false
-      //},
       "RateLimitOptions": {
         "ClientIdHeader": "ClientId",
         "ClientWhitelist": [],
@@ -25,8 +27,11 @@
         "PeriodTimespan": 6,
         "Limit": 2
       },
-      "Key": "UserService"
-
+      "Key": "UserService",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+      
     },
     {
       "DownstreamPathTemplate": "/api/product",
