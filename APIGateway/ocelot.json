@@ -11,12 +11,22 @@
       ],
       "UpstreamPathTemplate": "/api/user",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "FileCacheOptions": {
-        "TtlSeconds": 60,
-        "Region": "default",
-        "Header": "OC-Caching-Control",
-        "EnableContentHashing": false
-      }
+      //"FileCacheOptions": {
+      //  "TtlSeconds": 60,
+      //  "Region": "default",CacheManager
+      //  "Header": "OC-Caching-Control",
+      //  "EnableContentHashing": false
+      //},
+      "RateLimitOptions": {
+        "ClientIdHeader": "ClientId",
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 6,
+        "Limit": 2
+      },
+      "Key": "UserService"
+
     },
     {
       "DownstreamPathTemplate": "/api/product",
@@ -28,7 +38,8 @@
         }
       ],
       "UpstreamPathTemplate": "/api/product",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "Key": "ProductService"
     },
 
     {
@@ -41,7 +52,15 @@
         }
       ],
       "UpstreamPathTemplate": "/api/account/login/{email}/{password}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimespan": 6,
+        "Limit": 2
+      }
+      
     },
 
     {
@@ -57,7 +76,34 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ],
+
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "UserService",
+        "ProductService"
+      ],
+      "UpstreamPathTemplate": "/api/aggregate/user_prod",
+      "UpstreamHttpMethod": [ "GET" ],
+      "ReRouteKeysConfig": [
+        {
+          "RouteKey": "UserService",
+          "JsonPath": "$"
+        },
+        {
+          "RouteKey": "ProductService",
+          "JsonPath": "$"
+        }
+      ]
+    }
+  ],
   "GlobalConfiguration": {
-    "BaseUrl": "htpps://localhost:8000"
+    "BaseUrl": "https ://localhost:8000",
+    "CacheOptions": {
+      "TtlSeconds": 30,
+      "Region": "default",
+      "Header": "OC-Caching-Control",
+      "EnableContentHashing": false
+    }
   }
 }
